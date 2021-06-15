@@ -1,28 +1,54 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div v-if="this.isLogin === null">
+      <LoginPage v-if="toLogin === '/'"></LoginPage>
+      <RegisterPage v-else></RegisterPage>
+    </div>
+    <router-view v-else></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import LoginPage from '@/views/LoginPage';
+  import RegisterPage from '@/views/RegisterPage';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  export default {
+    name: 'App',
+    data() {
+      return {
+        isLogin: localStorage.getItem('logged_in'),
+        toLogin: this.$router.currentRoute.path
+      };
+    },
+    components: {
+      LoginPage,
+      RegisterPage
+    },
+    mounted() {
+      console.log(this.toLogin);
+    },
+    watch: {
+      $route() {
+        this.toLogin = this.$router.currentRoute.path;
+      }
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  body {
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+  }
+
+  * {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
 </style>
