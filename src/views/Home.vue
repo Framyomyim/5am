@@ -17,16 +17,18 @@
       <span v-else></span>
       </div>
     </header>
+    <Feeds />
   </div>
 </template>
 
 <script>
+import Feeds from '@/components/Feeds'
 import db from '@/db.js'
 
 export default {
   name: 'Home',
   components: {
-    
+    Feeds
   },
   methods: {
     show() {
