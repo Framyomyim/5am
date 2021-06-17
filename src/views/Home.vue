@@ -5,12 +5,16 @@
         <span class="brand">5AM</span>
       </div>
       <div>
-        <button type="button" class="profile-dropdown" :click="show">
+        <button type="button" class="profile-dropdown" v-on:click="show">
           <img :src="myprofile" class="profile">
         </button>
+
         <div class="dropdown" v-if="isShow">
-          Dropdown
+          <router-link to="">Profile</router-link>
+          <router-link to="">Messages</router-link>
+          <router-link to="">Logout</router-link>
         </div>
+      <span v-else></span>
       </div>
     </header>
   </div>
@@ -96,4 +100,30 @@ export default {
     opacity: .8;
     cursor: pointer;
   }
+
+  .dropdown {
+    display: block;
+    position: absolute;
+    z-index: 111;
+    background: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    color: #222;
+    right: 20px;
+    width:  250px;
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.15);
+  }
+
+  .dropdown a {
+    display: block;
+    text-decoration: none;
+    color:#0062FF;
+    padding: 8px 6px;
+  }
+
+  .dropdown a:hover {
+    background: #eee;
+    border-radius: 9px;
+  }
+  
 </style>

@@ -10,7 +10,7 @@
 <style scoped>
     figure {
         display: inline-block;
-        width: 200px;
+        width: 120px;
         margin: 0 auto;
         margin-bottom: 25px;
     }
